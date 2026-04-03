@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from flask_swagger_ui import get_swaggerui_blueprint
 from database import engine
 import models
@@ -11,6 +12,7 @@ models.Base.metadata.create_all(bind=engine)
 
 app = Flask(__name__)
 app.config["JSON_SORT_KEYS"] = False
+CORS(app)
 
 # Register Blueprints
 app.register_blueprint(users_bp)
